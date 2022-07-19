@@ -18,4 +18,50 @@ func TestNew(t *testing.T) { //Test___()
 
 }
 
+func TestSetShip(t *testing.T){
+	var listTest = []struct { //slice of struct
+		input    Ship
+		expected Ship
+	}{
+		{
+			Ship{
+				"Ship1",1,
+			},
+			Ship{
+				"Ship1",1,
+			},
+		},
+		{
+			Ship{
+				"Ship2",2,
+			},
+			Ship{
+				"Ship2",2,
+			},
+		},
+		{
+			Ship{
+				"Ship4",4,
+			},
+			Ship{
+				"Ship4",4,
+			},
+		},
+
+	}
+
+	for _, structAtiIndex := range listTest {
+		newShip := New()
+		newShip.Set(structAtiIndex.input.shipName,structAtiIndex.input.size)
+		actualName,actualSize := newShip.Ship()
+		if actualName != structAtiIndex.expected.shipName{
+			t.Error("Actual status is ", actualName, "but expected is ", structAtiIndex.expected.shipName)
+		}
+		if actualSize != structAtiIndex.expected.size{
+			t.Error("Actual status is ", actualSize, "but expected is ", structAtiIndex.expected.size)
+		}
+	}
+
+}
+
 
